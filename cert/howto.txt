@@ -1,0 +1,24 @@
+'''
+Text based on Matt Joyce's instructions:
+
+Python requests module isn't very good at handling p12
+certificates. There is however a work around.
+
+How to create a certificate pem file
+
+$ openssl pkcs12 -in bot.user7.p12 -nokeys -out certificate.pem
+Enter Import Password: XXXXX
+MAC verified OK
+
+Then we export the private key
+
+$ openssl pkcs12 -in bot.user7.p12 -nocerts -out privkey.pem
+Enter Import Password: XXXX
+MAC verified OK
+Enter PEM pass phrase: XXXX
+Verifying - Enter PEM pass phrase: XXXX
+
+Then we convert to a plainkey
+
+openssl rsa -in privkey.pem -out plainkey.pem
+'''

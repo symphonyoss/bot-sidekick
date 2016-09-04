@@ -1,0 +1,116 @@
+cmd_list : |
+    List of Sidekick commands:
+
+    help [CMD]
+        (CMD-specific) help
+
+    ?
+        list of commands
+
+    alias STR1=STR2
+        define STR1 to be the trigger
+    alias STR1=
+        undefine an existing STR1 trigger
+
+    announce [-all] [-daily] [-weekly] [-monthly] m/d/y H:M TZ MESSAGE
+    announce [-all] [-daily] [-weekly] [-monthly] today H:M MESSAGE
+    announce [-all] [-daily] [-weekly] [-monthly] now MESSAGE
+        define (repetitive) announcements (for this or all rooms),
+        using some abbreviations. TZ="US/Pacific" etc
+    announce cancel 3
+    announce cancel
+        cancel a single announcement, or all
+
+    manage demote REGEXP
+    manage promote REGEXP
+    manage remove REGEXP
+    manage importFrom REGEXP
+        manage room members, bulk import from another room
+
+    ooo [-all] m/d/y MESSAGE
+        define (for all rooms) an out-of-office message
+    ooo cancel 1
+    ooo cancel
+        cancel a out-of-office mesage, or all
+
+    status
+        show user-specific state
+
+    watch [-all] REGEXP
+        receive a copy when the REGEXP matches (from all rooms)
+    watch cancel 3
+    watch cancel
+        cancel a watch task, or all watch tasks
+
+help: |
+    General command format:
+
+        /sidekick [COMMAND [PARAMETERS]]
+    or
+        /sk  [COMMAND [PARAMETERS]]
+
+    Commands are: ?, alias, announce, intro, manage, ooo, status, watch.
+
+    Try "/sidekick examples" or "/sidekick help CMD" for more details.
+
+examples: |
+    Sidekick examples
+
+    See your definitions stored with Sidekick:
+        /sidekick  status
+
+    Define an out-of-office auto-reply (posted at most once a day):
+        /sidekick  ooo  8/20/2016 in NYC
+
+    Define an out-of-office msg for all rooms:
+        /sidekick  ooo  -all  8/20/2016 in NYC
+
+    Cancel an ooo entry, or all of them
+        /sidekick  ooo  cancel  2
+        /sidekick  ooo  cancel
+
+    Define a shorter Sidekick trigger for you:
+        /sidekick  alias  ./=/sidekick
+        and then call Sidekick with  "./ help"
+
+    Define an abbreviation (for several words):
+        /sidekick  alias  ?=/sidekick help
+        and get help by just typing ?
+
+    Define a weekly reminder:
+        /sidekick announce -weekly 7/27/16 16:00 US/Pacific Reports are due!
+
+    Watch this room (and get a private msg from Sidekick):
+        /sidekick  watch  "Trump|Clinton|Cl.*wns"
+
+    Watch *any* room (and get matching records as private messages)
+        /sidekick  watch  -all  "Trump|Clinton|Cl.*wns"
+
+    Watch and get a daily digest:
+        /sidekick  watch  -all  -digest  "Trump|Clinton|Cl.*wns"
+
+    Cancel a watch entry, or all of them
+        /sidekick  watch  cancel  2
+        /sidekick  watch  cancel
+
+    Demote/promote/remove/add (all) members of this room
+        /sidekick  manage  demote  The.Intern
+        /sidekick  manage  promote  Your.Buddy
+        /sidekick  manage  remove   *
+        /sidekick  manage  add  Another.Buddy
+        /sidekick  manage  importAllFrom  Symphony.All
+
+intro : |
+    Introduction
+
+    Sidekick carries out repetitive tasks in rooms that you share with the bot.
+
+    Tasks for Sidekick include sending out-of-office messages when you are mentioned (sent once a day), send weekly reminders, watching rooms for special words (and receiving those messages in your private Sidekick room), and doing chatroom management and debug actions.
+
+    Being a stateful bot, Sidekick remembers your settings like for example shortcuts for long Sidekick commands. You can also get the list of all rooms that Sidekick observes for you, list your out-of-office messages or the announcements that you scheduled for some future point in time.
+
+    Sidekick is invoked by typing "/sidekick" at the beginning of the line, optionally followed by a command and its parameters. Additional (and shorter) triggers can be defined with the alias command.
+
+    Try it out, start with "/sidekick help".
+
+    July 2016, <cft@symphony.com>
