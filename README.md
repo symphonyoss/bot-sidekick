@@ -1,6 +1,6 @@
 # Sidekick
 
-See the slides ![pdf](sidekick-20160724.pdf) for a better description
+See the slides [pdf](https://github.com/symphonyoss/bot-sidekick/blob/master/sidekick-20160724.pdf) for a better description
 and discussion of Sidekick.
 
 ## Functionality
